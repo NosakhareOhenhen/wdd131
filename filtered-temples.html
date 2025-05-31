@@ -3,30 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temple Album</title>
-    <link rel="stylesheet" href="filtered-temples.css">
+    <title>Temple Filter Gallery</title>
+    <link rel="stylesheet" href="css/filtered-temples.css">
 </head>
 <body>
     <header>
         <h1>Temple Album</h1>
         <nav>
             <ul>
-                <li><a href="#" data-filter="home">Home</a></li>
-                <li><a href="#" data-filter="old">Old</a></li>
-                <li><a href="#" data-filter="new">New</a></li>
-                <li><a href="#" data-filter="large">Large</a></li>
-                <li><a href="#" data-filter="small">Small</a></li>
+                <li><a href="#" id="home">Home</a></li>
+                <li><a href="#" id="old">Old (pre-1900)</a></li>
+                <li><a href="#" id="new">New (post-2000)</a></li>
+                <li><a href="#" id="large">Large (>90k sq ft)</a></li>
+                <li><a href="#" id="small">Small (<10k sq ft)</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="temple-cards">
-            <!-- Temple cards will be dynamically generated here -->
-        </section>
+        <div id="temple-cards"></div>
     </main>
     <footer>
-        <p>© <span id="current-year"></span> | Last Modified: <span id="last-modified"></span></p>
+        <p>&copy; <span id="currentyear"></span> | Temple Gallery | Last Modified: <span id="lastmodified"></span></p>
     </footer>
-    <script src="filtered-temples.js"></script>
+    <script src="js/filtered-temples.js"></script>
 </body>
 </html>
