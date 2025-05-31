@@ -1,3 +1,4 @@
+// Temple data array
 const temples = [
     {
         templeName: "Aba Nigeria",
@@ -48,88 +49,122 @@ const temples = [
         area: 116642,
         imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/mexico-city-mexico/400x250/mexico-city-temple-exterior-1518361-wallpaper.jpg"
     },
-    // Additional temple objects
     {
-        templeName: "Salt Lake",
+        templeName: "Salt Lake City Utah",
         location: "Salt Lake City, Utah, United States",
         dedicated: "1893, April, 6",
-        area: 253015,
-        imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/salt-lake-city-utah/400x250/salt-lake-temple-1256698-wallpaper.jpg"
+        area: 253000,
+        imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/salt-lake-city-utah/400x250/salt-lake-temple-761720-wallpaper.jpg"
     },
     {
-        templeName: "Kyiv Ukraine",
-        location: "Kyiv, Ukraine",
-        dedicated: "2010, August, 29",
-        area: 10700,
-        imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/kyiv-ukraine/400x250/kyiv-ukraine-temple-1051235-wallpaper.jpg"
+        templeName: "Rome Italy",
+        location: "Rome, Italy",
+        dedicated: "2019, March, 10",
+        area: 40000,
+        imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/rome-italy/400x250/rome-italy-temple-exterior-1218663-wallpaper.jpg"
     },
     {
-        templeName: "Nauvoo Illinois",
-        location: "Nauvoo, Illinois, United States",
-        dedicated: "2002, June, 27",
-        area: 54000,
-        imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/nauvoo-illinois/400x250/nauvoo-temple-756439-wallpaper.jpg"
+        templeName: "Hong Kong China",
+        location: "Hong Kong, China",
+        dedicated: "1996, May, 26",
+        area: 5200,
+        imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/hong-kong-china/400x250/hong-kong-china-temple-exterior-1073708-wallpaper.jpg"
     }
 ];
 
-// Function to generate temple cards
-function generateTempleCards(templeArray) {
+// Function to create temple cards
+function displayTemples(filteredTemples = temples) {
     const templeCardsContainer = document.getElementById('temple-cards');
-    templeCardsContainer.innerHTML = ''; // Clear existing cards
+    templeCardsContainer.innerHTML = ''; 
 
-    templeArray.forEach(temple => {
+    filteredTemples.forEach(temple => {
         const card = document.createElement('div');
         card.className = 'temple-card';
 
-        const year = parseInt(temple.dedicated.split(',')[0]);
+        const img = document.createElement('img');
+        img.src = temple.imageUrl;
+        img.alt = `${temple.templeName} Temple`;
+        img.loading = 'lazy';
 
-        card.innerHTML = `
-            <h3>${temple.templeName}</h3>
-            <p>Location: ${temple.location}</p>
-            <p>Dedicated: ${temple.dedicated}</p>
-            <p>Area: ${temple.area} sq ft</p>
-            <img src="${temple.imageUrl}" alt="${temple.templeName} Temple" loading="lazy">
-        `;
+        const info = document.createElement('div');
+        info.className = 'temple-info';
+
+        const name = document.createElement('h2');
+        name.textContent = temple.templeName;
+
+        const location = document.createElement('p');
+        location.innerHTML = `<strong>Location:</strong> ${temple.location}`;
+
+        const dedicated = document.createElement('p');
+        dedicated.innerHTML = `<strong>Dedicated:</strong> ${temple.dedicated}`;
+
+        const area = document.createElement('p');
+        area.innerHTML = `<strong>Area:</strong> ${temple.area.toLocaleString()} sq ft`;
+
+        info.appendChild(name);
+        info.appendChild(location);
+        info.appendChild(dedicated);
+        info.appendChild(area);
+
+        card.appendChild(img);
+        card.appendChild(info);
 
         templeCardsContainer.appendChild(card);
     });
 }
 
-// Function to filter temples based on criteria
-function filterTemples(criteria) {
-    let filteredTemples = temples;
-
-    if (criteria === 'old') {
-        filteredTemples = temples.filter(temple => {
-            const year = parseInt(temple.dedicated.split(',')[0]);
-            return year < 1900;
-        });
-    } else if (criteria === 'new') {
-        filteredTemples = temples.filter(temple => {
-            const year = parseInt(temple.dedicated.split(',')[0]);
-            return year > 2000;
-        });
-    } else if (criteria === 'large') {
-        filteredTemples = temples.filter(temple => temple.area > 90000);
-    } else if (criteria === 'small') {
-        filteredTemples = temples.filter(temple => temple.area < 10000);
-    }
-
-    generateTempleCards(filteredTemples);
+// Filter functions
+function filterOldTemples() {
+    const oldTemples = temples.filter(temple => {
+        const year = parseInt(temple.dedicated.split(',')[0]);
+        return year < 1900;
+    });
+    displayTemples(oldTemples);
 }
 
-// Event listeners for navigation links
-document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const filter = link.getAttribute('data-filter');
-        filterTemples(filter);
+function filterNewTemples() {
+    const newTemples = temples.filter(temple => {
+        const year = parseInt(temple.dedicated.split(',')[0]);
+        return year > 2000;
     });
+    displayTemples(newTemples);
+}
+
+function filterLargeTemples() {
+    const largeTemples = temples.filter(temple => temple.area > 90000);
+    displayTemples(largeTemples);
+}
+
+function filterSmallTemples() {
+    const smallTemples = temples.filter(temple => temple.area < 10000);
+    displayTemples(smallTemples);
+}
+
+// Event listeners
+document.getElementById('home').addEventListener('click', (e) => {
+    e.preventDefault();
+    displayTemples();
+});
+document.getElementById('old').addEventListener('click', (e) => {
+    e.preventDefault();
+    filterOldTemples();
+});
+document.getElementById('new').addEventListener('click', (e) => {
+    e.preventDefault();
+    filterNewTemples();
+});
+document.getElementById('large').addEventListener('click', (e) => {
+    e.preventDefault();
+    filterLargeTemples();
+});
+document.getElementById('small').addEventListener('click', (e) => {
+    e.preventDefault();
+    filterSmallTemples();
 });
 
-// Initial display of all temples
-generateTempleCards(temples);
+// Footer date information
+document.getElementById('currentyear').textContent = new Date().getFullYear();
+document.getElementById('lastmodified').textContent = document.lastModified;
 
-// Update footer
-document.getElementById('current-year').textContent = new Date().getFullYear();
-document.getElementById('last-modified').textContent = document.lastModified;
+// Initial display
+displayTemples();
