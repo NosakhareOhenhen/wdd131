@@ -12,7 +12,7 @@ const products = [
     { id: 'prod010', name: 'Air Fryer' }
 ];
 
-// Function to populate product select options
+//  populate product select options
 function populateProductOptions() {
     const productSelect = document.getElementById('productName');
     
@@ -26,7 +26,7 @@ function populateProductOptions() {
     }
 }
 
-// Function to update review counter
+//  update review counter
 function updateReviewCounter() {
     const reviewCountElement = document.getElementById('reviewCount');
     
