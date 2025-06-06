@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Submitted</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Thank You!</h1>
+    </header>
+
+    <main>
+        <div class="confirmation">
+            <h2>Your review has been submitted successfully</h2>
+            <p>We appreciate your feedback and will use it to improve our products.</p>
+            
+            <div id="reviewSummary"></div>
+            
+            <p>Total reviews submitted from this browser: <span id="reviewCount">0</span></p>
+            
+            <a href="form.html" class="button">Submit Another Review</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Product Reviews Inc. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Display submitted data
+        const urlParams = new URLSearchParams(window.location.search);
+        const summaryElement = document.getElementById('reviewSummary');
+        
+        let summaryHTML = '<h3>Review Summary</h3><ul>';
+        
+        for (const [key, value] of urlParams) {
+            if (key === 'usefulFeatures') {
+                summaryHTML += `<li><strong>Useful Features:</strong> ${value}</li>`;
+            } else {
+                summaryHTML += `<li><strong>${key}:</strong> ${value}</li>`;
+            }
+        }
+        
+        summaryHTML += '</ul>';
+        summaryElement.innerHTML = summaryHTML;
+        
+        // Update review counter
+        updateReviewCounter();
+        
+        // year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
