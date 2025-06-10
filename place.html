@@ -1,37 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nigeria - Country Info</title>
-  <meta name="description" content="Explore Nigeria - Country Info page with details on area, population, capital, language, currency, and weather.">
-  <meta name="author" content="Nosakhare Ohenhen">
-  <link rel="stylesheet" href="styles.css"> <!-- Corrected from place.css -->
-  <script src="scripts.js" defer></script>
+  <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Nigeria Info Page</title> <meta name="description" content="Explore key data and current weather information for Nigeria."> <meta name="author" content="Your Name"> <link rel="stylesheet" href="place.css"> <script src="scripts.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Nigeria Overview</h1> <!-- Updated for specificity -->
+    <h1>Nigeria</h1>
   </header>
 
   <main>
-    <div class="hero">
-      <picture>
-        <source srcset="images/Nigeria-hero-large.webp" media="(min-width: 768px)">
-        <img src="images/Nigeria-hero-small.webp" alt="Scenic view of Nigeria" class="hero-img">
-      </picture>
-      <div class="country-data">
-        <h2>Country Data</h2>
-        <ul>
-          <li><strong>Area:</strong> 923,769 km²</li>
-          <li><strong>Population:</strong> 223 million</li>
-          <li><strong>Capital:</strong> Abuja</li>
-          <li><strong>Language:</strong> English</li>
-          <li><strong>Currency:</strong> Naira (₦)</li>
-          <li><strong>Time Zone:</strong> WAT (UTC+1)</li>
-        </ul>
-      </div>
-    </div>
+    <picture>
+      <source srcset="images/Nigeria-hero-large.webp" media="(min-width: 768px)"> <img src="images/Nigeria-hero-small.webp" alt="Scenic view of Nigeria" class="hero"> </picture>
+
+    <section class="data">
+      <h2>Data</h2>
+      <ul>
+        <li><strong>Area:</strong> 923,769 km²</li>
+        <li><strong>Population:</strong> 223 million</li>
+        <li><strong>Capital:</strong> Abuja</li>
+        <li><strong>Language:</strong> English</li>
+        <li><strong>Currency:</strong> Naira (₦)</li>
+        <li><strong>Time Zone:</strong> WAT (UTC+1)</li>
+      </ul>
+    </section>
 
     <section class="weather">
       <h2>Weather <span class="weather-icon"></span></h2>
@@ -45,7 +36,7 @@
   </main>
 
   <footer>
-    <p>© <span id="year"></span> 🇳🇬 Nigeria InfoPage Project</p>
+    <p>&copy; <span id="year"></span> 🇳🇬 Nigeria InfoPage Project</p>
     <p>Last Modified: <span id="modified"></span></p>
   </footer>
 </body>
